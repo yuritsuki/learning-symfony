@@ -1,0 +1,6 @@
+/app/vendor/
+/app/var/
+/.env
+
+# docker volume (на всякий случай)
+pg_data/
