@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\BlogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
 class Blog
@@ -22,6 +24,10 @@ class Blog
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
+
+    #[ManyToOne(targetEntity: Category::class)]
+    #[JoinColumn(name: 'category_id', referencedColumnName: 'id')]
+    private Category|null $category = null;
 
     public function getId(): ?int
     {
@@ -60,6 +66,17 @@ class Blog
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
         return $this;
     }
 

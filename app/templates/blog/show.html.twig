@@ -23,6 +23,12 @@
                 <th>Text</th>
                 <td>{{ blog.text }}</td>
             </tr>
+            {% if blog.category %}
+            <tr>
+                <th>Category</th>
+                <td>{{ blog.category.fullName }}</td>
+            </tr>
+            {% endif %}
         </tbody>
     </table>
 
