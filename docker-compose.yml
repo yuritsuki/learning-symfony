@@ -11,6 +11,15 @@ services:
       - ./app:/var/www/app
     depends_on:
       - db
+    environment:
+      APP_ENV: "dev"
+      APP_SHARE_DIR: "var/share"
+      DEFAULT_URI: "http://localhost:8080"
+      MESSENGER_TRANSPORT_DSN: "doctrine://default?auto_setup=0"
+      MAILER_DSN: "null://null"
+      DATABASE_URL: ${DATABASE_URL}
+
+
 
   nginx:
     image: nginx:1.25-alpine
